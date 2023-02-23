@@ -3,6 +3,7 @@
 const webpack = require('webpack'); // eslint-disable-line no-unused-vars
 
 module.exports = {
+  mode: 'none',
   entry: './browser/index.js',
   output: {
     path: __dirname,
@@ -11,12 +12,12 @@ module.exports = {
   context: __dirname,
   devtool: 'source-map',
   module: {
-    loaders: [
+    rules: [
       {
         test: /jsx?$/,
         exclude: /(node_modules|bower_components)/,
         loader: 'babel-loader',
-        query: {
+        options: {
           presets: ['react', 'es2015', 'stage-2'],
         }
       }
