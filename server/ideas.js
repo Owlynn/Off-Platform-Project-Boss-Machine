@@ -20,6 +20,10 @@ ideasRouter.post('/:ideaId',(req,res) => {
 })
 
 // GET /api/ideas/:ideaId to get a single idea by id.
+
+ideasRouter.get('/:ideaId', (req,res) => {
+    res.send(req.ideas);
+})
 // PUT /api/ideas/:ideaId to update a single idea by id.
 // DELETE /api/ideas/:ideaId to delete a single idea by id.
 
