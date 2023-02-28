@@ -5,6 +5,7 @@ const {
     getAllFromDatabase,
     getFromDatabaseById,
     deleteFromDatabasebyId,
+    deleteAllFromDatabase,
     createMeeting 
   } = require('./db');
 

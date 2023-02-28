@@ -4,7 +4,8 @@ const {
     getAllFromDatabase,
     addToDatabase,
     getFromDatabaseById,
-    deleteFromDatabasebyId
+    deleteFromDatabasebyId,
+    updateInstanceInDatabase
     } = require('./db');
 
 // .param sert à "attacher" des propriétés à la requête pour s'en resservir
@@ -27,8 +28,7 @@ minionsRouter.get('/', (req,res) => {
 
 // POST /api/minions to create a new minion and save it to the database.
 
-minionsRouter.post('/:minionId',(req,res) => {
-    console.log(req.body);
+minionsRouter.post('/minions',(req,res) => {
     const newMinion = addToDatabase('minions', req.body);
     res.status(201).send(newMinion);
 
