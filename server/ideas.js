@@ -8,10 +8,10 @@ const {
     deleteFromDatabasebyId,
   } = require('./db');
 
-  ideasRouter.param('ideaId', (req, res, next, id) => {
+ideasRouter.param('ideaId', (req, res, next, id) => {
     const idea = getFromDatabaseById('ideas', id);
     if (idea) {
-        req.idea = minion;
+        req.idea = idea;
         next();
     } else {
         res.status(404).send();
@@ -42,5 +42,13 @@ ideasRouter.put('/:ideaId',(req,res) => {
     res.send(updatedIdea);
 })
 // DELETE /api/ideas/:ideaId to delete a single idea by id.
-
+ideasRouter.delete('/:ideaId',(req,res) => {
+    const isDeleted = deleteFromDatabasebyId('ideas', req.params.ideaId);
+    if (isDeleted) {
+        res.status(204);
+      } else {
+        res.status(500);
+      }
+    res.send();
+    })
 module.exports = ideasRouter;
