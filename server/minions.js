@@ -17,7 +17,7 @@ minionsRouter.param('minionId', (req, res, next, id) => {
     } else {
         res.status(404).send();
     }
-    });
+});
 
 // GET /api/minions to get an array of all minions.
 

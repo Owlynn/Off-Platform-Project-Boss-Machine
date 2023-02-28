@@ -8,6 +8,16 @@ const {
     deleteFromDatabasebyId,
   } = require('./db');
 
+  ideasRouter.param('ideaId', (req, res, next, id) => {
+    const idea = getFromDatabaseById('ideas', id);
+    if (idea) {
+        req.idea = minion;
+        next();
+    } else {
+        res.status(404).send();
+    }
+});
+
 // GET /api/ideas to get an array of all ideas.
 ideasRouter.get('/', (req,res) => {
     res.send(getAllFromDatabase('ideas'));
@@ -24,7 +34,13 @@ ideasRouter.post('/:ideaId',(req,res) => {
 ideasRouter.get('/:ideaId', (req,res) => {
     res.send(req.ideas);
 })
+
 // PUT /api/ideas/:ideaId to update a single idea by id.
+
+ideasRouter.put('/:ideaId',(req,res) => {
+    const updatedIdea = updateInstanceInDatabase('ideas', req.body);
+    res.send(updatedIdea);
+})
 // DELETE /api/ideas/:ideaId to delete a single idea by id.
 
 module.exports = ideasRouter;
