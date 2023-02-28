@@ -3,7 +3,8 @@ const minionsRouter = express.Router();
 const {
     getAllFromDatabase,
     addToDatabase,
-    getFromDatabaseById
+    getFromDatabaseById,
+    deleteFromDatabasebyId
     } = require('./db');
 
     // .param sert à "attacher" des propriétés à la requête pour s'en resservir
@@ -45,5 +46,14 @@ minionsRouter.put('/:minionId',(req,res) => {
     res.send(updatedMinion);
 })
 // DELETE /api/minions/:minionId to delete a single minion by id.
+minionsRouter.delete('/:minionId',(req,res) => {
+    const isDeleted = deleteFromDatabasebyId('minions', req.params.minionId);
+    if (isDeleted) {
+        res.status(204);
+      } else {
+        res.status(500);
+      }
+      res.send();
 
+})
 module.exports = minionsRouter;
