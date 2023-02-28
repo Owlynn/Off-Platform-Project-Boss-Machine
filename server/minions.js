@@ -7,17 +7,17 @@ const {
     deleteFromDatabasebyId
     } = require('./db');
 
-    // .param sert à "attacher" des propriétés à la requête pour s'en resservir
-    // dans une autre route avec le même paramètre.
-    minionsRouter.param('minionId', (req, res, next, id) => {
-        const minion = getFromDatabaseById('minions', id);
-        if (minion) {
-          req.minion = minion;
-          next();
-        } else {
-          res.status(404).send();
-        }
-      });
+// .param sert à "attacher" des propriétés à la requête pour s'en resservir
+// dans une autre route avec le même paramètre.
+minionsRouter.param('minionId', (req, res, next, id) => {
+    const minion = getFromDatabaseById('minions', id);
+    if (minion) {
+        req.minion = minion;
+        next();
+    } else {
+        res.status(404).send();
+    }
+    });
 
 // GET /api/minions to get an array of all minions.
 
