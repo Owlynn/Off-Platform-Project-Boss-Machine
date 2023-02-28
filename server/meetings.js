@@ -6,3 +6,5 @@ const meetingsRouter = express.Router();
 // GET /api/minions/:minionId to get a single minion by id.
 // PUT /api/minions/:minionId to update a single minion by id.
 // DELETE /api/minions/:minionId to delete a single minion by id.
+
+module.exports = meetingsRouter;
