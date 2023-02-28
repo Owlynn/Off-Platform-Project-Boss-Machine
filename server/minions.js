@@ -53,7 +53,7 @@ minionsRouter.delete('/:minionId',(req,res) => {
       } else {
         res.status(500);
       }
-      res.send();
+    res.send();
 
 })
 module.exports = minionsRouter;
